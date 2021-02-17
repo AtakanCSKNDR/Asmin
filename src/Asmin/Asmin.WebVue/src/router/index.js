@@ -1,21 +1,31 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Login from "../views/Login.vue";
+import EmptyLayout from "@/layout/empty.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+import users from "@/router/modules/users";
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  }
-]
+    path: "/",
+    component: EmptyLayout,
+    children: [
+      {
+        path: "",
+        name: "Login",
+        component : Login
+      },
+    ],
+  },
+  users,
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
